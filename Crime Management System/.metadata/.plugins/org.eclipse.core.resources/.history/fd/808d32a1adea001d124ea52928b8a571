@@ -1,0 +1,71 @@
+package com.masai.utilities;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.masai.entities.Crime;
+import com.masai.exceptions.CrimeNotFoundException;
+import com.masai.exceptions.CriminalNotFoundException;
+
+public class CrimeUtility {
+
+    public static Map<String, Integer> getTotalCrimeByPSArea(List<Crime> crimes, LocalDate fromDate, LocalDate toDate) {
+        Map<String, Integer> result = new HashMap<>();
+        for (Crime crime : crimes) {
+            if (crime.getDate().isAfter(fromDate) && crime.getDate().isBefore(toDate.plusDays(1))) {
+                String psArea = crime.getPsArea();
+                if (result.containsKey(psArea)) {
+                    result.put(psArea, result.get(psArea) + 1);
+                } else {
+                    result.put(psArea, 1);
+                }
+            }
+        }
+        return result;
+    }
+
+    public static Map<String, Integer> getTotalCrimeByType(List<Crime> crimes, LocalDate fromDate, LocalDate toDate) {
+        Map<String, Integer> result = new HashMap<>();
+        for (Crime crime : crimes) {
+            if (crime.getDate().isAfter(fromDate) && crime.getDate().isBefore(toDate.plusDays(1))) {
+                String type = crime.getType();
+                if (result.containsKey(type)) {
+                    result.put(type, result.get(type) + 1);
+                } else {
+                    result.put(type, 1);
+                }
+            }
+        }
+        return result;
+    }
+
+    public static List<Crime> searchCrimeByDescription(List<Crime> crimes, String description) {
+        List<Crime> result = new ArrayList<>();
+        for (Crime crime : crimes) {
+            if (crime.getDescription().contains(description)) {
+                result.add(crime);
+            }
+        }
+        if (result.isEmpty()) {
+            throw new CrimeNotFoundException("No crimes found with the given description.");
+        }
+        return result;
+    }
+
+    public static List<Crime> searchCrimeByCriminalName(List<Crime> crimes, String criminalName) {
+        List<Crime> result = new ArrayList<>();
+        for (Crime crime : crimes) {
+            if (crime.getCriminals().stream().anyMatch(criminal -> criminal.getName().equals(criminalName))) {
+                result.add(crime);
+            }
+        }
+        if (result.isEmpty()) {
+            throw new CriminalNotFoundException("No criminals found with the given name.");
+        }
+        return result;
+    }
+}
+
