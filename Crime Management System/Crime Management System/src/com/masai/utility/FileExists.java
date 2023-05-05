@@ -8,12 +8,17 @@ import java.io.ObjectOutputStream;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.masai.entities.Admin;
+import com.masai.entities.Crime;
+import com.masai.entities.Criminal;
+
 public class FileExists {
 
 
     // File paths for storing data
-    private static final String CRIMINAL_FILE_PATH = "criminals.ser";
-    private static final String CRIME_FILE_PATH = "crimes.ser";
+    public static final String CRIMINAL_FILE_PATH = "criminals.ser";
+    public static final String CRIME_FILE_PATH = "crimes.ser";
+    public static final String ADMIN_FILE_PATH = "admins.ser";
 
     /**
      * Checks if the criminal data file exists, and returns a map of criminal objects.
@@ -66,6 +71,31 @@ public class FileExists {
 
         return crimeMap;
     }
+    
+    public static Map<Integer, Admin> getAdminData() {
+        Map<Integer, Admin> adminMap = null;
+        File file = new File(ADMIN_FILE_PATH);
+
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+                adminMap = new LinkedHashMap<>();
+                saveDataToFile(ADMIN_FILE_PATH, adminMap);
+            } else {
+                ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+                adminMap = (Map<Integer, Admin>) ois.readObject();
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        return adminMap;
+    }
+
+    public static void saveAdminData(Map<Integer, Admin> adminMap) {
+        saveDataToFile(ADMIN_FILE_PATH, adminMap);
+    }
+
 
     /**
      * Saves the given map of data to the specified file.
