@@ -2,16 +2,14 @@ package com.masai.services;
 
 import java.util.Map;
 
-import com.masai.entities.Crime;
 import com.masai.entities.Criminal;
-import com.masai.exceptions.CrimeNotFoundException;
 import com.masai.exceptions.CriminalNotFoundException;
 import com.masai.exceptions.InvalidDataException;
 
 public class CriminalImp implements CriminalIm{
 
 	@Override
-	public String addCriminals(Criminal c, Map<Integer, Criminal> data) throws InvalidDataException, CrimeNotFoundException {
+	public String addCriminals(Criminal c, Map<Integer, Criminal> data) throws InvalidDataException, CriminalNotFoundException {
 		// TODO Auto-generated method stub
 		data.put(c.getCriminal_id(), c);
 		
