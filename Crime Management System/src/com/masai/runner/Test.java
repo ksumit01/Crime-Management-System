@@ -3,8 +3,6 @@ package com.masai.runner;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
-import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -46,8 +44,8 @@ public class Test {
 //		Map<Integer, Product> products = FileExists.productFile();
 //		Map<String, Customer> customers = FileExists.customerFile(
 
-		Map<Integer, Criminal> criminalMap = FileExists.getCriminalData();
-		Map<Integer, Crime> crimeMap = FileExists.getCrimeData();
+		Map<Integer, Criminal> criminalMap = FileExists.criminalFile();
+		Map<Integer, Crime> crimeMap = FileExists.crimeFile();
 		Scanner scanner = new Scanner(System.in);
 		// Load data from files
 //        adminMap = FileExists.getAdminData();
@@ -140,7 +138,7 @@ public class Test {
 //	}
 //	
 	public static void adminLogin(Scanner sc) throws InvalidDataEntryException {
-
+ 
 		System.out.println("Enter the user name");
 		String userName = sc.next();
 		System.out.println("Enter the password");
@@ -210,7 +208,7 @@ public class Test {
 
 		adminLogin(sc);
 		CrimeImp cImp1 = new CrimeInterfaceImpl();
-		CriminalImp crim = new CriminalImp();
+		CriminalIm crim = new CriminalImp();
 
 //		CrimeImp crime1 = new CrimeInterfaceImpl();
 //		CustomerService cusService = new CustomerServiceImpl();
@@ -246,8 +244,8 @@ public class Test {
 					System.out.println(upt);
 					break;
 				case 5:
-					adminAddCriminal(sc,criminal, crim);
-
+					String criminalCon = adminAddCriminal(sc,criminal, crim);
+					System.out.println(criminalCon);
 					break;
 //				case 6:
 //					adminViewAllTransactions(transactions, trnsactionService);
@@ -352,7 +350,7 @@ public class Test {
 		return str;
 	}
 	
-	public static String adminAddCriminal(Scanner sc, Map<Integer, Criminal> criminal, CriminalIm crim) throws InvalidDataException, CrimeNotFoundException {
+	public static String adminAddCriminal(Scanner sc, Map<Integer, Criminal> criminalmap, CriminalIm crim) throws InvalidDataException, CriminalNotFoundException {
 		String str = null;
 		
 //		System.out.println("please enter the Criminal Id which is to be updated");
@@ -376,10 +374,11 @@ public class Test {
 		String psArea = sc.nextLine();
 
 		Criminal cr = new Criminal(IDGeneration.generateId(), name, date, gender, idenMarks, aDate,psArea);
-
-		str = crim.addCriminals( cr, criminal);// considering all details are valid
-
 		
+		str = crim.addCriminals( cr, criminalmap);// considering all details are valid
+		
+		System.out.println(cr);
+		System.out.println(str);
 		return str;
 	}
 //

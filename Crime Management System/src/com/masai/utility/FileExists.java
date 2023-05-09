@@ -2,9 +2,6 @@ package com.masai.utility;
 
 //package com.masai.utility;
 import java.io.File;
-
-//import java.io.File;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -15,65 +12,92 @@ import java.util.Map;
 import com.masai.entities.Crime;
 import com.masai.entities.Criminal;
 
+//import java.io.File;
+
+//import com.masai.entities.Customer;
+//import com.masai.entities.Product;
+
 public class FileExists {
 
 
     // File paths for storing data
-    public static final String CRIMINAL_FILE_PATH = "criminals.ser";
-    public static final String CRIME_FILE_PATH = "crimes.ser";
-//    public static final String ADMIN_FILE_PATH = "admins.ser";
+	public static Map<Integer, Crime> crimeFile() {
 
-    /**
-     * Checks if the criminal data file exists, and returns a map of criminal objects.
-     * If the file does not exist, creates a new empty file and returns an empty map.
-     *
-     * @return A map of criminal objects, with criminal ID as the key.
-     */
-    public static Map<Integer, Criminal> getCriminalData() {
-        Map<Integer, Criminal> criminalMap = null;
-        File file = new File(CRIMINAL_FILE_PATH);
+		Map<Integer, Crime> pFile = null;
 
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
-                criminalMap = new LinkedHashMap<>();
-                saveDataToFile(CRIMINAL_FILE_PATH, criminalMap);
-            } else {
-                ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-                criminalMap = (Map<Integer, Criminal>) ois.readObject();
-            }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+		File f = new File("Crime.ser");
+		boolean flag = false;
+		try {
+			if (!f.exists()) {
+				f.createNewFile();
+				flag = true;
+			}
 
-        return criminalMap;
-    }
+			if (flag) {
 
+				pFile = new LinkedHashMap<>();
+				ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
+				oos.writeObject(pFile);
+				return pFile;
+
+			} else {
+
+				ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+				pFile = (Map<Integer, Crime>) ois.readObject();
+
+				return pFile;
+
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return pFile;
+	}
     /**
      * Checks if the crime data file exists, and returns a map of crime objects.
      * If the file does not exist, creates a new empty file and returns an empty map.
      *
      * @return A map of crime objects, with crime ID as the key.
      */
-    public static Map<Integer, Crime> getCrimeData() {
-        Map<Integer, Crime> crimeMap = null;
-        File file = new File(CRIME_FILE_PATH);
+	public static Map<Integer, Criminal> criminalFile() {
 
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
-                crimeMap = new LinkedHashMap<>();
-                saveDataToFile(CRIME_FILE_PATH, crimeMap);
-            } else {
-                ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-                crimeMap = (Map<Integer, Crime>) ois.readObject();
-            }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+		Map<Integer, Criminal> cFile = null;
 
-        return crimeMap;
-    }
+		File f = new File("Criminal.ser");
+		boolean flag = false;
+		try {
+			if (!f.exists()) {
+				f.createNewFile();
+				flag = true;
+			}
+
+			if (flag) {
+				
+				cFile = new LinkedHashMap<>();
+				ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
+				oos.writeObject(cFile);
+				return cFile;
+
+			} else {
+				
+				ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+				cFile = (Map<Integer, Criminal>) ois.readObject();
+
+				return cFile;
+
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			System.out.println(e.getMessage());
+		}
+		return cFile;
+
+	}
+
     
 //    public static Map<Integer, Admin> getAdminData() {
 //        Map<Integer, Admin> adminMap = null;
@@ -106,14 +130,14 @@ public class FileExists {
      * @param filePath The path to the file to save the data to.
      * @param data     The map of data to be saved.
      */
-    public static void saveDataToFile(String filePath, Map<?, ?> data) {
-        try {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath));
-            oos.writeObject(data);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
+//    public static void saveDataToFile(String filePath, Map<?, ?> data) {
+//        try {
+//            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath));
+//            oos.writeObject(data);
+//        } catch (Exception e) {
+//            System.out.println("Error: " + e.getMessage());
+//        }
+//    }
 
 }
 

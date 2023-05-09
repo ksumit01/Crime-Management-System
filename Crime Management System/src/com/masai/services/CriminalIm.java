@@ -1,7 +1,9 @@
-package com.masai.services;import java.util.Map;
+package com.masai.services;
+import java.util.Map;
 
 import com.masai.entities.Criminal;
 import com.masai.exceptions.CrimeNotFoundException;
+import com.masai.exceptions.CriminalNotFoundException;
 import com.masai.exceptions.InvalidDataException;
 
 public interface CriminalIm {
@@ -11,7 +13,7 @@ public interface CriminalIm {
 //	String removeCriminal(int id, Map<Integer, Criminal> criminal) throws CriminalNotFoundException;
 //	String deleteCriminal(int id, Map<Integer, Criminal> criminal) throws CriminalNotFoundException;
 //	void put(int id, Criminal c);
-	String addCriminals(Criminal cr, Map<Integer, Criminal> criminal) throws InvalidDataException, CrimeNotFoundException;
+	String addCriminals(Criminal cr, Map<Integer, Criminal> criminal) throws InvalidDataException,  CriminalNotFoundException;
 //	Integer getCriminal_id();
 	
 }
