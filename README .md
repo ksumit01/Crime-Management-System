@@ -1,5 +1,7 @@
 
 
+![App Screenshot](https://github.com/ksumit01/profuse-building-4915/blob/day_5/ScreenShots/Screenshot%202023-05-03%20at%209.23.53%20PM.png?raw=true)
+
 ## Crime Information Management System
 The system effectively manages and maintains crime information specific to a designated police station's jurisdictional area.
 
@@ -16,6 +18,15 @@ The system effectively manages and maintains crime information specific to a des
 
 •The system offers an easy search for criminals by name or crimes by description.
 
+
+
+
+![App Screenshot](https://github.com/ksumit01/profuse-building-4915/blob/main/ScreenShots/Screenshot%202023-05-13%20at%204.56.46%20PM.png?raw=true)
+
+
+![App Screenshot](https://github.com/ksumit01/profuse-building-4915/blob/main/ScreenShots/Screenshot%202023-05-13%20at%204.57.25%20PM.png?raw=true)
+
+![App Screenshot](https://github.com/ksumit01/profuse-building-4915/blob/main/ScreenShots/Screenshot%202023-05-13%20at%204.59.09%20PM.png?raw=true)
 
 ## Installation
 
