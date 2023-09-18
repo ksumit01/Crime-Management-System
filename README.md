@@ -5,6 +5,11 @@
 ## Crime Information Management System
 The system effectively manages and maintains crime information specific to a designated police station's jurisdictional area.
 
+## ![TECH_STACK](https://img.shields.io/badge/Tech_Stack-%231572B6.svg?style=for-the-badge)
+
+- MYSQL
+- Core Java
+- Serialization
 
 
 
